@@ -13,6 +13,8 @@
 #ifndef MYQUEUE_H
 #define MYQUEUE_H
 
+#include <stdlib.h>
+#include <stdio.h>
 // The main data structure for the queue
 struct queue{
 	unsigned int back;	    // The next free position in the queue
@@ -32,9 +34,19 @@ typedef struct queue queue_t;
 // The queue should be initialized with data on
 // the heap.
 queue_t* create_queue(unsigned int _capacity){
-	queue_t* myQueue = NULL;
-	// TODO: Implement me!
-
+	queue_t* myQueue = (queue_t*)malloc(sizeof(queue_t));
+	if (!myQueue) {
+		return NULL;
+	}
+	myQueue->data = (int*)malloc(sizeof(int) * _capacity);
+	if (!myQueue->data) {
+		free(myQueue);
+		return NULL;
+	}
+	myQueue->capacity = _capacity;
+	myQueue->size = 0;
+	myQueue->front = 0;
+	myQueue->back = 0;
 	return myQueue;
 }
 
