@@ -92,9 +92,13 @@ int queue_enqueue(queue_t* q, int item){
 // removes an item from the queue.
 // Removing from an empty queue should crash the program, call exit(1)
 int queue_dequeue(queue_t *q){
-	// TODO: Implement me!
-
-	return 99999; // Note: This line is a filler so the code compiles.
+	if (queue_empty(q) == 1) {
+		exit(1);
+	}
+	int item = q->data[q->front];
+	q->front = (q->front + 1) % q->capacity;
+	q->size--;
+	return item;
 }
 
 
