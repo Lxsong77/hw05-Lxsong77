@@ -107,9 +107,11 @@ int queue_dequeue(queue_t *q){
 // A queue that has not been previously created will crash the program.
 // (i.e. A NULL queue cannot return the size, call exit(1))
 unsigned int queue_size(queue_t* q){
-	// TODO: Implement me!
+	if (q == NULL) {
+		exit(1);
+	}
 
-	return 0;
+	return q->size;
 }
 
 
