@@ -85,9 +85,25 @@ int stack_full(stack_t* s){
 // Returns a -1 if the operation fails (otherwise returns 0 on success).
 // (i.e. if the Stack is full that is an error, but does not crash the program).
 int stack_push(stack_t* s, int item){
-	// TODO: Implement me!
+	if (stack_full(s)) {
+		return -1;
+	}
 
-	return -1; // Note: you should have two return statements in this function.
+	node_t* node = (node_t*)malloc(sizeof(node_t));
+	if (!node) {
+		return NULL;
+	}
+	node->data = item;
+
+	if (stack_empty(s)) {
+		node->next = NULL;
+	} else {
+		node->next = s->head;
+	}
+
+	s->count++;
+	s->head->node;
+	return 0;
 }
 
 // Dequeue an item
@@ -95,9 +111,11 @@ int stack_push(stack_t* s, int item){
 // removes an item from the stack.
 // Removing from an empty stack should crash the program, call exit(1).
 int stack_pop(stack_t* s){
-	// TODO: Implement me!
+	if (stack_empty(s)) {
+		return -1;
+	}
 
-	return 9999999; // Note: This line is a 'filler' so the code compiles.
+
 }
 
 // Stack Size
