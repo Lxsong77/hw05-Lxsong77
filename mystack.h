@@ -91,15 +91,10 @@ int stack_push(stack_t* s, int item){
 
 	node_t* node = (node_t*)malloc(sizeof(node_t));
 	if (!node) {
-		return NULL;
+		return -1;
 	}
 	node->data = item;
-
-	if (stack_empty(s)) {
-		node->next = NULL;
-	} else {
-		node->next = s->head;
-	}
+	node->next = s->head;
 
 	s->count++;
 	s->head->node;
@@ -112,9 +107,13 @@ int stack_push(stack_t* s, int item){
 // Removing from an empty stack should crash the program, call exit(1).
 int stack_pop(stack_t* s){
 	if (stack_empty(s)) {
-		return -1;
+		exit(1);
 	}
 
+	int item = s->head->data;
+	s->head= s->head->next;
+	s->count--;
+	return item;
 
 }
 
