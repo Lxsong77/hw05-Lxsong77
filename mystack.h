@@ -122,16 +122,30 @@ int stack_pop(stack_t* s){
 // A stack that has not been previously created will crash the program.
 // (i.e. A NULL stack cannot return the size)
 unsigned int stack_size(stack_t* s){
-	// TODO: Implement me!
+	if (s == NULL) {
+		exit(1);
 
-	return 0;
+	return s->count;
 }
 
 // Free stack
 // Removes a stack and ALL of its elements from memory.
 // This should be called before the proram terminates.
 void free_stack(stack_t* s){
-	// TODO: Implement me!
+		if (s == NULL) {
+			return; // If stack is NULL, nothing to free
+		}
+
+		// Free all nodes in the stack
+		node_t* current = s->head;
+		while (current != NULL) {
+			node_t* temp = current;
+			current = current->next;
+			free(temp);
+		}
+
+		// Free the stack structure itself
+		free(s);
 }
 
 #endif
