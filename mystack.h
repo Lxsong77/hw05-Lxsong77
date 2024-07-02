@@ -61,8 +61,10 @@ stack_t* create_stack(unsigned int capacity){
 // Returns 1 if true (The stack is completely empty)
 // Returns 0 if false (the stack has at least one element enqueued)
 int stack_empty(stack_t* s){
-	// TODO: Implement me!!
-
+	if (s->count == 0) {
+		return 1;
+	}
+	
 	return 0;
 }
 
