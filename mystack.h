@@ -13,10 +13,13 @@
 #ifndef MYSTACK_H
 #define MYSTACK_H
 
+
 // Stores the maximum 'depth' of our stack.
 // Our implementation enforces a maximum depth of our stack.
 // (i.e. capacity cannot exceed MAX_DEPTH for any stack)
 # define MAX_DEPTH 32
+#include <stdlib.h>
+#include <stdio.h>
 
 // Create a node data structure to store data within
 // our stack. In our case, we will stores 'integers'
@@ -41,9 +44,14 @@ typedef struct stack{
 // (Think about what the means in terms of memory allocation)
 // The stacks fields should also be initialized to default values.
 stack_t* create_stack(unsigned int capacity){
-	// Modify the body of this function as needed.
-	stack_t* myStack = NULL;	
-	// TODO: Implement me!!
+	stack_t* myStack = (stack_t*)malloc(sizeof(stack_t));
+	if (!myStack) {
+		return NULL;
+	}
+
+	myStack->count = 0;
+	myStack->capacity = capacity;
+	myStack->head = NULL;
 
 	return myStack;
 }
