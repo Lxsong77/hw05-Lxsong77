@@ -163,7 +163,7 @@ int main(){
     int counter =0;
     while(unitTests[counter]!=NULL){
 	    printf("========unitTest %d========\n",counter);
-        if(1==unitTests[counter](1)){
+        if(1==unitTests[counter]()){
 		    printf("passed test\n");
     		testsPassed++;	
 	    }else{
