@@ -125,7 +125,7 @@ int stack_pop(stack_t* s){
 unsigned int stack_size(stack_t* s){
 	if (s == NULL) {
 		exit(1);
-
+	}
 	return s->count;
 }
 
