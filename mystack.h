@@ -64,7 +64,7 @@ int stack_empty(stack_t* s){
 	if (s->count == 0) {
 		return 1;
 	}
-	
+
 	return 0;
 }
 
@@ -73,7 +73,9 @@ int stack_empty(stack_t* s){
 // Returns 1 if true (The Stack is completely full, i.e. equal to capacity)
 // Returns 0 if false (the Stack has more space available to enqueue items)
 int stack_full(stack_t* s){
-	// TODO: Implement me!
+	if (s->count == s->capacity) {
+		return 1;
+	}
 
 	return 0;
 }
