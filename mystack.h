@@ -19,7 +19,6 @@
 // (i.e. capacity cannot exceed MAX_DEPTH for any stack)
 # define MAX_DEPTH 32
 #include <stdlib.h>
-#include <stdio.h>
 
 // Create a node data structure to store data within
 // our stack. In our case, we will stores 'integers'
@@ -89,15 +88,15 @@ int stack_push(stack_t* s, int item){
 		return -1;
 	}
 
-	node_t* node = (node_t*)malloc(sizeof(node_t));
-	if (!node) {
+	node_t* newNode = (node_t*)malloc(sizeof(node_t));
+	if (!newNode) {
 		return -1;
 	}
-	node->data = item;
-	node->next = s->head;
+	newNode->data = item;
+	newNode->next = s->head;
 
 	s->count++;
-	s->head->node;
+	s->head = newNode;
 	return 0;
 }
 
@@ -111,7 +110,9 @@ int stack_pop(stack_t* s){
 	}
 
 	int item = s->head->data;
-	s->head= s->head->next;
+	node_t* temp = s->head;
+	s->head= temp->next;
+	free(temp);
 	s->count--;
 	return item;
 
@@ -132,20 +133,22 @@ unsigned int stack_size(stack_t* s){
 // Removes a stack and ALL of its elements from memory.
 // This should be called before the proram terminates.
 void free_stack(stack_t* s){
-		if (s == NULL) {
-			return; // If stack is NULL, nothing to free
-		}
+	if (s == NULL) {
+	return; // If stack is NULL, nothing to free
+	}
 
-		// Free all nodes in the stack
-		node_t* current = s->head;
-		while (current != NULL) {
-			node_t* temp = current;
-			current = current->next;
-			free(temp);
-		}
+	// Free all nodes in the stack
+	node_t* current = s->head;
+	while (current != NULL) {
+		node_t* temp = current;
+		current = current->next;
+		free(temp);
+	}
 
-		// Free the stack structure itself
-		free(s);
+	// Free the stack structure itself
+	free(s);
 }
+
+
 
 #endif
