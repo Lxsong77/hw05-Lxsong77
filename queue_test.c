@@ -140,12 +140,48 @@ int unitTest5(int status){
 }
 
 // TODO: Add more tests here
+// Test creating a queue with zero capacity
+int unitTest6(int status) {
+    int passed = 0;
+
+    queue_t* testq = create_queue(0);
+    if (testq != NULL && testq->capacity == 0 && queue_size(testq) == 0) {
+        passed = 1;
+    }
+
+    free_queue(testq);
+    return passed;
+}
+
+// Test enqueue and dequeue in a loop
+int unitTest7(int status) {
+    int passed = 0;
+
+    queue_t* testq = create_queue(5);
+    for (int i = 0; i < 10; i++) {
+        queue_enqueue(testq, i);
+        int item = queue_dequeue(testq);
+        if (item != i) {
+            passed = 0;
+            break;
+        }
+        passed = 1;
+    }
+
+    free_queue(testq);
+    return passed;
+}
+
+
+
 int (*unitTests[])(int)={
     unitTest1,
     unitTest2,
     unitTest3,
     unitTest4,
     unitTest5,
+    unitTest6,
+    unitTest7,
     NULL
 };
 
