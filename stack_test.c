@@ -145,12 +145,29 @@ int unitTest5(int status){
 
 
 // TODO: Add tests here
+//Push more items than its capacity and ensure proper handling
+int unitTest6(int status) {
+    int passed = 0;
+    stack_t* test_s = create_stack(2);
+
+    if (stack_push(test_s, 1) == 0 && stack_push(test_s, 2) == 0) {
+        // Stack should be full now
+        if (stack_push(test_s, 3) == -1) {
+            passed = 1;
+        }
+    }
+
+    free_stack(test_s);
+    return passed;
+}
+
 int (*unitTests[])(int)={
     unitTest1,
     unitTest2,
     unitTest3,
     unitTest4,
     unitTest5,
+    unitTest6,
     NULL
 };
 
