@@ -172,7 +172,26 @@ int unitTest7(int status) {
     return passed;
 }
 
+// Test for boundary condition: enqueue until full then dequeue all
+int unitTest8(int status) {
+    int passed = 0;
 
+    queue_t* testq = create_queue(5);
+    for (int i = 1; i <= 5; i++) {
+        queue_enqueue(testq, i);
+    }
+    for (int i = 1; i <= 5; i++) {
+        int item = queue_dequeue(testq);
+        if (item != i) {
+            passed = 0;
+            break;
+        }
+        passed = 1;
+    }
+
+    free_queue(testq);
+    return passed;
+}
 
 int (*unitTests[])(int)={
     unitTest1,
@@ -182,6 +201,7 @@ int (*unitTests[])(int)={
     unitTest5,
     unitTest6,
     unitTest7,
+    unitTest8,
     NULL
 };
 
